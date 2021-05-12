@@ -1,0 +1,255 @@
+<!---This code was written by me. This is the project code which i have implemented using html,css,js,and some bootstrap. Actually this is a project for selection in technical round in agile.-->
+<!DOCTYPE html>
+<html lang="en">
+<style>
+/*This line is mentioned to indicate the background colour. I have taken blue colour*/
+h3 {
+  background-color: rgba(54, 162, 235, 1);
+}
+/*These classes are used for to allign the dropdown menus in the same row.*/
+div.col-3{
+font-size: 12px;
+left: 10px;
+}
+div.col-4{
+font-size: 12px;
+position: absolute;
+left: 500px;
+}
+div.col-5{
+font-size: 12px;
+position: absolute;
+left:1000px;
+}
+</style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!--This indicates the Title of the project-->
+  <title>AGILE PROJECT</title>
+  
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> 
+
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!--This is a navbar where menu username and sales report are present.-->
+  <h3><pre style="color:white" class="/tab">  Menu            <span style="height: 13px;width: 13px;background-color: red;border-radius: 60%;display: inline-block;" class="dot"></span>  Username                                                                Sales Report </pre>
+     </h3>
+</head>
+<body>
+	<!---These are used for drop down menus for category, product and brand.-->
+ <div class="container">
+  <div class="row">
+    <div class="col-3">
+     <strong> 
+        Category :
+        <select id="select1" onchange="selection()"> 
+            <option value="Food">Food</option> 
+            <option value="Clothing">Clothing</option>
+        </select> 
+    </strong> 
+    </div>
+      <div class="col-4">
+      <strong>
+          <center>Product :
+        <select style="margin-left:0%" onchange="selection()" id="select2"> 
+            <option value="cereals">cereals</option> 
+            <option value="Fruits">Fruits</option> 
+        </select></center>
+    </strong>  
+  </div>
+  <div class="col-5">
+<strong> 
+ <center> Brand :
+        <select id="select3" onchange="selection1()"> 
+            <option value="cereals 1">Cereals 1</option> 
+            <option value="cereals 2">Cereals 2</option> 
+        </select>  </center>
+</strong></div>
+</div>
+</div>
+    <strong class="card-title"><p style = "font: serif; font-size : 18px"><center>Sales By Month for</center></p></strong>
+	<div class="card" id="graph" style=" height: 15rem;">
+    <canvas style="height:200%" id="BarChart"></canvas>
+	</div>
+
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script>
+
+/*These are different sales values.*/
+var data1=[14,20,5,8];
+
+/*These all are for bar charts*/
+var chart23 = document.getElementById("BarChart").getContext('2d');
+var chart123 = new Chart(chart23, {
+type: 'bar',
+data: {
+labels: ["January", "February", "March", "April"],
+datasets: [{
+label: 'Sales in the Market',
+data: data1,
+backgroundColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)'
+],
+borderColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',			
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)'
+],
+borderWidth: 2
+}]
+},
+options: { 
+scales: {
+yAxes: [{
+ticks: {
+beginAtZero: true
+}
+}]
+}
+}
+});
+
+
+
+/*These are options present inside the drop down menu of Product*/
+function selection()
+{
+	
+	Element1 = document.querySelector('#select1'); 
+	o1=Element1.value;	
+	
+	if (o1=="Food")
+	{
+		var opti= document.getElementById('select2').options[0];
+		opti.value =  'Cereals';
+		opti.text = 'Cereals';
+		
+		
+		var opti= document.getElementById('select2').options[1];
+		opti.value =  'Fruits';
+		opti.text = 'Fruits';
+	}
+	
+	
+	if (o1=="Clothing")
+	{
+		var opti= document.getElementById('select2').options[0];
+		opti.value =  'Shirts';
+		opti.text = 'Shirts';
+		
+		
+		var opti= document.getElementById('select2').options[1];
+		opti.value =  'Pants';
+		opti.text = 'Pants';
+		
+
+	}	
+	Element2 = document.querySelector('#select2'); 
+	o2=Element2.value;
+	if (o2=="Fruits")
+	{
+		var opti= document.getElementById('select3').options[0];
+		opti.value =  'Fruit1';
+		opti.text = 'Fruit1';
+		
+		var opti= document.getElementById('select3').options[1];
+		opti.value =  'Fruit2';
+		opti.text = 'Fruit2';
+	}
+
+	if (o2=="Cereals")
+	{
+		var opti= document.getElementById('select3').options[0];
+		opti.value =  'Cereals1';
+		opti.text = 'Cereals1';
+		
+		var opti= document.getElementById('select3').options[1];
+		opti.value =  'Cereals2';
+		opti.text = 'Cereals2';
+	}
+	
+	if (o2=="Shirts")
+	{
+		var opti= document.getElementById('select3').options[0];
+		opti.value =  'Shirt1';
+		opti.text = 'Shirt1';
+		
+		var opti= document.getElementById('select3').options[1];
+		opti.value =  'Shirt2';
+		opti.text = 'Shirt2';
+	}
+	if (o2=="Pants")
+	{
+		var opti= document.getElementById('select3').options[0];
+		opti.value =  'Pant1';
+		opti.text = 'Pant1';
+		
+		var opti= document.getElementById('select3').options[1];
+		opti.value =  'Pant2';
+		opti.text = 'Pant2';
+	}
+	selection1();
+	
+	
+}
+/*These all are for bar chart*/
+function selection1()
+{
+var data1=[2,3,4,2]	
+document.getElementById("BarChart").remove(); 
+div = document.querySelector("#graph"); 
+div.insertAdjacentHTML("afterbegin","<canvas style='height:500%' id='BarChart'></canvas>");
+for (var i=0;i<4;i++)
+	{
+		data1[i]=(Math.ceil(Math.random() * 10));
+	}
+var chart23=document.getElementById("BarChart");
+var chart123 = new Chart(chart23, {
+type: 'bar',
+data: {
+labels: ["January", "February", "March", "April"],
+datasets: [{
+label: 'Sales in the market',
+data: data1,
+backgroundColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)'
+],
+borderColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',			
+
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)'
+],
+borderWidth: 2
+}]
+},
+options: { 
+scales: {
+yAxes: [{
+ticks: {
+beginAtZero: true
+}
+}]
+}
+}
+});
+}
+</script>
+</body>
+</html>
